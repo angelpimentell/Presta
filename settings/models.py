@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+
+class Setting(models.Model):
+    company_name = models.CharField(max_length=20)
+    company_avatar = models.ImageField(upload_to="avatar/")
+    default_currency = models.PositiveSmallIntegerField()
