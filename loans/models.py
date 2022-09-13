@@ -9,11 +9,17 @@ class Client(models.Model):
     avatar = models.ImageField(upload_to="avatars/")
     description = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.client_text
+
 
 class PaymentTime(models.Model):
     name = models.CharField(max_length=20)
     measure_type = models.PositiveSmallIntegerField()
     quantity = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        return self.paymenttime_text
 
 
 class Loan(models.Model):
@@ -26,6 +32,9 @@ class Loan(models.Model):
     start = models.DateField()
     finish = models.DateField(null=True)
 
+    def __str__(self):
+        return self.laon_text
+
 
 class Payment(models.Model):
     loan = models.ForeignKey("loans.Loan", on_delete=models.CASCADE)
@@ -35,3 +44,6 @@ class Payment(models.Model):
     delay = models.PositiveSmallIntegerField()
     interests = models.DecimalField(max_digits=3, decimal_places=2)
     interests = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        return self.payment_text

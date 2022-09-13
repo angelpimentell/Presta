@@ -7,3 +7,6 @@ class User(models.Model):
     password = models.CharField(max_length=256)
     avatar = models.ImageField(upload_to="avatars/")
     description = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.user_text
