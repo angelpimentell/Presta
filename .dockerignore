@@ -2,3 +2,6 @@
 .gitignore
 .env.development
 .env
+docker-compose.development.yml
+Dockerfile
+/venv/
