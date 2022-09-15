@@ -1,15 +1,8 @@
 from django.test import TestCase
-from .models import User
+from .factories import UserFactory
 
 
 class UserTestCase(TestCase):
-    def setUp(self):
-        User.objects.create(name="lion",
-                            email="roar",
-                            password="roar",
-                            avatar="image.jpg",
-                            description="roar")
-
-        def test_animals_can_speak(self):
-            lion = User.objects.get(name="lion")
-            self.assertEqual(lion, 'The lion says "roar"')
+    def test_new_user(self):
+        user_example = UserFactory()
+        self.assertIsNotNone(user_example)
