@@ -1,15 +1,22 @@
-from django.db import models
+from factory.django import DjangoModelFactory
+from ..models import Loan
+from faker import Faker
+
+from ..factories import ClientFactory
+from ..factories import PaymentTimeFactory
+
+fake = Faker()
 
 
-class Loan(models.Model):
-    client = models.ManyToManyField("loans.Client", db_table='loans_clients')
-    payment_time = models.OneToOneField("loans.PaymentTime", on_delete=models.CASCADE)
-    total_amount = models.DecimalField(max_digits=9, decimal_places=2)
-    due_amount = models.DecimalField(max_digits=9, decimal_places=2)
-    interests = models.DecimalField(max_digits=3, decimal_places=2)
-    fee_type = models.PositiveSmallIntegerField()
-    start = models.DateField()
-    finish = models.DateField(null=True)
+class LoanFactory(DjangoModelFactory):
+    client = ClientFactory()
+    payment_time = PaymentTimeFactory()
+    total_amount = fake.pydecimal(left_digits=9, right_digits=2, positive=True)
+    due_amount = fake.pydecimal(left_digits=9, right_digits=2, positive=True)
+    interests = fake.pydecimal(left_digits=3, right_digits=2, positive=True)
+    fee_type = fake.random_int(min=0, max=3)
+    start = fake.date_between()
+    finish = fake.date_between()
 
-    def __str__(self):
-        return self.laon_text
+    class Meta:
+        model = Loan
