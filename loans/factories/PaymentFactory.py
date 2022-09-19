@@ -1,14 +1,21 @@
-from django.db import models
+from factory.django import DjangoModelFactory
+
+from ..models.Payment import Payment
+from ..factories.LoanFactory import LoanFactory
+from ..factories.PaymentTimeFactory import PaymentTimeFactory
+
+from faker import Faker
+
+fake = Faker()
 
 
-class Payment(models.Model):
-    loan = models.ForeignKey("loans.Loan", on_delete=models.CASCADE)
-    payment_time = models.ForeignKey("loans.PaymentTime", on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=9, decimal_places=2)
-    date = models.DateField()
-    delay = models.PositiveSmallIntegerField()
-    interests = models.DecimalField(max_digits=3, decimal_places=2)
-    interests = models.PositiveSmallIntegerField()
+class Payment(DjangoModelFactory):
+    loan = LoanFactory()
+    payment_time = PaymentTimeFactory()
+    amount = fake.pydecimal(left_digits=9, right_digits=2, positive=True)
+    date = fake.date_between()
+    delay = fake.random_int(min=0, max=365)
+    interests = fake.pydecimal(left_digits=3, right_digits=2, positive=True)
 
-    def __str__(self):
-        return self.payment_text
+    class Meta:
+        model = Payment

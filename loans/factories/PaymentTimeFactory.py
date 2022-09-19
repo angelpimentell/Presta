@@ -1,10 +1,16 @@
-from django.db import models
+from factory.django import DjangoModelFactory
+
+from ..models.PaymentTime import PaymentTime
+
+from faker import Faker
+
+fake = Faker()
 
 
-class PaymentTime(models.Model):
-    name = models.CharField(max_length=20)
-    measure_type = models.PositiveSmallIntegerField()
-    quantity = models.PositiveSmallIntegerField()
+class PaymentTimeFactory(DjangoModelFactory):
+    name = fake.name()
+    measure_type = fake.random_int(min=0, max=3)
+    quantity = fake.random_int(min=0, max=3)
 
-    def __str__(self):
-        return self.paymenttime_text
+    class Meta:
+        model = PaymentTime
