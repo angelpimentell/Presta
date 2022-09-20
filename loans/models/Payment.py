@@ -8,7 +8,6 @@ class Payment(models.Model):
     date = models.DateField()
     delay = models.PositiveSmallIntegerField()
     interests = models.DecimalField(max_digits=3, decimal_places=2)
-    interests = models.PositiveSmallIntegerField()
 
     def __str__(self):
         return self.loan
