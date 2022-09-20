@@ -1,5 +1,7 @@
 from factory.django import DjangoModelFactory
-from ..models import Client
+
+from ..models.Client import Client
+
 from faker import Faker
 
 fake = Faker()
