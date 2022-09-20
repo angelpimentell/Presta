@@ -1,16 +1,20 @@
-from factory.django import DjangoModelFactory
-from ..models import Loan
-from faker import Faker
+import factory
 
-from ..factories import ClientFactory
-from ..factories import PaymentTimeFactory
+from ..models.Loan import Loan
+from ..factories.ClientFactory import ClientFactory
+from ..factories.PaymentTimeFactory import PaymentTimeFactory
+
+from faker import Faker
 
 fake = Faker()
 
 
-class LoanFactory(DjangoModelFactory):
-    client = ClientFactory()
-    payment_time = PaymentTimeFactory()
+class LoanFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Loan
+
+    # client = factory.SubFactory(ClientFactory)
+    payment_time = factory.SubFactory(PaymentTimeFactory)
     total_amount = fake.pydecimal(left_digits=9, right_digits=2, positive=True)
     due_amount = fake.pydecimal(left_digits=9, right_digits=2, positive=True)
     interests = fake.pydecimal(left_digits=3, right_digits=2, positive=True)
@@ -18,5 +22,11 @@ class LoanFactory(DjangoModelFactory):
     start = fake.date_between()
     finish = fake.date_between()
 
-    class Meta:
-        model = Loan
+    @factory.post_generation
+    def clients(self, create, extracted, **kwargs):
+        if not create or not extracted:
+            # Simple build, or nothing to add, do nothing.
+            return
+
+        # Add the iterable of clients using bulk addition
+        self.clients.add(*extracted)
