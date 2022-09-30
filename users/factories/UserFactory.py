@@ -1,6 +1,5 @@
 import factory
 
-from ..models import User
 from faker import Faker
 
 fake = Faker()
@@ -15,4 +14,4 @@ class UserFactory(factory.django.DjangoModelFactory):
     description = factory.Faker('text', max_nb_chars=100)
 
     class Meta:
-        model = User
+        model = "users.User"
