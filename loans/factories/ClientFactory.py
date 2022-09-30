@@ -1,4 +1,4 @@
-from factory.django import DjangoModelFactory
+import factory
 
 from ..models.Client import Client
 
@@ -7,13 +7,13 @@ from faker import Faker
 fake = Faker()
 
 
-class ClientFactory(DjangoModelFactory):
-    email = fake.email()
-    direction = fake.address()
-    telephone_number = fake.random_int(min=100000000, max=999999999)
-    telephone_ext = fake.random_int(min=10, max=99)
-    avatar = fake.file_path(depth=5, category='image')
-    description = fake.text(max_nb_chars=100)
+class ClientFactory(factory.django.DjangoModelFactory):
+    email = factory.Faker('email')
+    direction = factory.Faker('address')
+    telephone_number = factory.Faker('random_in', min=100000000, max=999999999)
+    telephone_ext = factory.Faker('random_int', min=10, max=99)
+    avatar = factory.Faker('file_path', depth=5, category='image')
+    description = factory.Faker('text', max_nb_chars=100)
 
     class Meta:
         model = Client

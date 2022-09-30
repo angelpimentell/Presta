@@ -14,13 +14,13 @@ class LoanFactory(factory.django.DjangoModelFactory):
         model = Loan
 
     # client = factory.SubFactory(ClientFactory)
-    payment_time = factory.SubFactory(PaymentTimeFactory)
-    total_amount = fake.pydecimal(left_digits=9, right_digits=2, positive=True)
-    due_amount = fake.pydecimal(left_digits=9, right_digits=2, positive=True)
-    interests = fake.pydecimal(left_digits=3, right_digits=2, positive=True)
-    fee_type = fake.random_int(min=0, max=3)
-    start = fake.date_between()
-    finish = fake.date_between()
+    # payment_time = factory.SubFactory(PaymentTimeFactory)
+    total_amount = factory.Faker('pydecimal', left_digits=9, right_digits=2, positive=True)
+    due_amount = factory.Faker('pydecimal', left_digits=9, right_digits=2, positive=True)
+    interests = factory.Faker('pydecimal', left_digits=3, right_digits=2, positive=True)
+    fee_type = factory.Faker('random_int', min=0, max=3)
+    start = factory.Faker('date_between')
+    finish = factory.Faker('date_between')
 
     @factory.post_generation
     def clients(self, create, extracted, **kwargs):
