@@ -19,6 +19,16 @@ services:
       - "postgres"
       - "nginx"
 
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "7834:80"
+    depends_on:
+      - postgres
+
   nginx:
     image: "nginx:1.23"
 
