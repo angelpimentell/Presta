@@ -1,17 +1,18 @@
-from factory.django import DjangoModelFactory
+import factory
+
 from ..models import User
 from faker import Faker
 
 fake = Faker()
 
 
-class UserFactory(DjangoModelFactory):
-    rol = fake.random_int(min=0, max=3)
-    name = fake.name()
-    email = fake.email()
-    password = fake.password(length=12)
-    avatar = fake.file_path(depth=5, category='image')
-    description = fake.text(max_nb_chars=100)
+class UserFactory(factory.django.DjangoModelFactory):
+    rol = factory.Faker('random_int', min=0, max=3)
+    name = factory.Faker('name')
+    email = factory.Faker('email')
+    password = factory.Faker('password', length=12)
+    avatar = factory.Faker('file_path', depth=5, category='image')
+    description = factory.Faker('text', max_nb_chars=100)
 
     class Meta:
         model = User
