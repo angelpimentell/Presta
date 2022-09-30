@@ -9,5 +9,5 @@ class LoanTestCase(TestCase):
 
     def test_new_loan(self):
         client = ClientFactory()
-        loan_example = LoanFactory.create(clients=(client,))
+        loan_example = LoanFactory.create(client=(client,))
         self.assertIsNotNone(loan_example)
