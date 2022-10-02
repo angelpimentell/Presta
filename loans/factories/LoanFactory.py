@@ -30,4 +30,4 @@ class LoanFactory(factory.django.DjangoModelFactory):
         self.clients.add(*extracted)
 
     class Meta:
-        model = Loan
+        model = "loans.Loan"
