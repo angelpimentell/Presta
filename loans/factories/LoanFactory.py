@@ -10,8 +10,6 @@ fake = Faker()
 
 
 class LoanFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = Loan
 
     # client = factory.SubFactory(ClientFactory)
     # payment_time = factory.SubFactory(PaymentTimeFactory)
@@ -30,3 +28,6 @@ class LoanFactory(factory.django.DjangoModelFactory):
 
         # Add the iterable of clients using bulk addition
         self.clients.add(*extracted)
+
+    class Meta:
+        model = Loan
