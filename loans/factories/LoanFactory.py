@@ -1,9 +1,5 @@
 import factory
 
-from ..models.Loan import Loan
-from ..factories.ClientFactory import ClientFactory
-from ..factories.PaymentTimeFactory import PaymentTimeFactory
-
 from faker import Faker
 
 fake = Faker()
