@@ -18,12 +18,14 @@ class LoanFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def clients(self, create, extracted, **kwargs):
-        if not create or not extracted:
-            # Simple build, or nothing to add, do nothing.
+        if not create:
+            # Simple build, do nothing.
             return
 
-        # Add the iterable of clients using bulk addition
-        self.clients.add(*extracted)
+        if extracted:
+            # A list of clients were passed in, use them
+            for client in extracted:
+                self.clients.add(client)
 
     class Meta:
         model = "loans.Loan"
