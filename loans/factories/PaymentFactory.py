@@ -1,6 +1,5 @@
 import factory
 
-from ..models.Payment import Payment
 from ..factories.LoanFactory import LoanFactory
 from ..factories.PaymentTimeFactory import PaymentTimeFactory
 
@@ -18,4 +17,4 @@ class Payment(factory.django.DjangoModelFactory):
     interests = factory.Faker('pydecimal', left_digits=3, right_digits=2, positive=True)
 
     class Meta:
-        model = Payment
+        model = 'loans.Payment'

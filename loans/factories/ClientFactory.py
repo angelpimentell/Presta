@@ -1,7 +1,5 @@
 import factory
 
-from ..models.Client import Client
-
 from faker import Faker
 
 fake = Faker()
@@ -16,4 +14,4 @@ class ClientFactory(factory.django.DjangoModelFactory):
     description = factory.Faker('text', max_nb_chars=100)
 
     class Meta:
-        model = Client
+        model = 'loans.Client'

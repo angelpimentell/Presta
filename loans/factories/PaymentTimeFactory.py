@@ -1,7 +1,5 @@
 import factory
 
-from ..models.PaymentTime import PaymentTime
-
 from faker import Faker
 
 fake = Faker()
@@ -13,4 +11,4 @@ class PaymentTimeFactory(factory.django.DjangoModelFactory):
     quantity = factory.Faker('random_int', min=0, max=3)
 
     class Meta:
-        model = PaymentTime
+        model = 'loans.PaymentTime'
