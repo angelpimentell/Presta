@@ -1,9 +1,5 @@
 import factory
 
-from faker import Faker
-
-fake = Faker()
-
 
 class PaymentTimeFactory(factory.django.DjangoModelFactory):
     name = factory.Faker('name')

@@ -1,9 +1,5 @@
 import factory
 
-from faker import Faker
-
-fake = Faker()
-
 
 class ClientFactory(factory.django.DjangoModelFactory):
     email = factory.Faker('email')

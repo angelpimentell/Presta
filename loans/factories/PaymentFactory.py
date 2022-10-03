@@ -3,10 +3,6 @@ import factory
 from ..factories.LoanFactory import LoanFactory
 from ..factories.PaymentTimeFactory import PaymentTimeFactory
 
-from faker import Faker
-
-fake = Faker()
-
 
 class Payment(factory.django.DjangoModelFactory):
     loan = LoanFactory()

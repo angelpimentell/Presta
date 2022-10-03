@@ -1,12 +1,7 @@
 import factory
 
-from faker import Faker
-
-fake = Faker()
-
 
 class LoanFactory(factory.django.DjangoModelFactory):
-
     # client = factory.SubFactory(ClientFactory)
     # payment_time = factory.SubFactory(PaymentTimeFactory)
     total_amount = factory.Faker('pydecimal', left_digits=9, right_digits=2, positive=True)
