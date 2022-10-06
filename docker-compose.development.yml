@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+  django:
+    build: .
+    command: bash -c "
+      python manage.py makemigrations
+      && python manage.py migrate
+      && python manage.py createsuperuser --noinput
+      && python manage.py runserver 0.0.0.0:8000
+      "
+    restart: always
+    volumes:
+      - .:/usr/local/src/presta
+    env_file:
+      - .env.development
+    ports:
+      - "8080:8000"
+    depends_on:
+      - "postgres"
+      - "nginx"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "7834:80"
+    depends_on:
+      - postgres
+
+  nginx:
+    image: "nginx:1.23"
+
+  postgres:
+    image: "postgres:14.5"
+    restart: always
+    env_file:
+      - .env.development
+    ports:
+      - '5432:5432'
