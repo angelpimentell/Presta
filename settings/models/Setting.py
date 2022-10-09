@@ -7,4 +7,4 @@ class Setting(models.Model):
     default_currency = models.PositiveSmallIntegerField()
 
     def __str__(self):
-        return self.setting_text
+        return self.company_name
