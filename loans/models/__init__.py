@@ -1,4 +1,3 @@
-from . import Client
-from . import Loan
-from . import Payment
-from . import PaymentTime
+from common.Facades.Package import Package
+
+Package(__file__).import_all_modules_from_models()
