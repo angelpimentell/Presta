@@ -1,13 +1,7 @@
-from . import *
-import types
+from os.path import dirname, basename, isfile, join
+import glob
 
-
-def imports():
-    for name, val in globals().items():
-        if isinstance(val, types.ModuleType):
-            if '.' not in val.__name__ and 'types' not in val.__name__:
-                name = val.__name__
-                __import__('settings.models.' + name.capitalize())
-
-
-imports()
+modules = glob.glob(join(dirname(__file__), "*.py"))
+__all__ = [basename(f)[:-3] for f in modules if isfile(f) and not f.endswith('__init__.py')]
+for one in __all__:
+    __import__('settings.models.' + one)
