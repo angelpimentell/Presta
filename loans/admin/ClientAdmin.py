@@ -1,4 +1,4 @@
 from django.contrib import admin
-from ..models.Client import Client
+from loans.models.Client import Client
 
 admin.site.register(Client)
