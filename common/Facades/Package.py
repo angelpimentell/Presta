@@ -1,9 +1,10 @@
 from os.path import dirname, basename, isfile, join
 import glob
+import os
 
 
 class Package:
-    def __init__(self, file_path):
+    def __init__(self, file_path: str):
         self.file_path = file_path
 
     def import_all_modules(self):
@@ -11,8 +12,9 @@ class Package:
         Import all modules in a package of first level from
         the Django app that has been used.
         """
-        app_name = self.file_path.split('\\')[-3]
-        package_name = self.file_path.split('\\')[-2]
+        folders = os.path.normpath(self.file_path).split(os.sep)
+        app_name = folders[-3]
+        package_name = folders[-2]
         module_names = self.get_module_names()
 
         for module_name in module_names:
