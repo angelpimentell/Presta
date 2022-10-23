@@ -1,4 +1,5 @@
-#!/usr/local/bin/python
+#!/bin/bash
+
 
 # Make migrations
 for folder in $(ls -d */); do
