@@ -1,4 +1,4 @@
 from django.contrib import admin
-from settings.models.Setting import Setting
+from settings.models.setting import Setting
 
 admin.site.register(Setting)

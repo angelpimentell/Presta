@@ -1,7 +1,7 @@
 import factory
 
-from ..factories.LoanFactory import LoanFactory
-from ..factories.PaymentTimeFactory import PaymentTimeFactory
+from ..factories.loan_factory import LoanFactory
+from ..factories.payment_time_factory import PaymentTimeFactory
 
 
 class Payment(factory.django.DjangoModelFactory):

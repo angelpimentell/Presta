@@ -1,8 +1,8 @@
 from django.test import TestCase
 
-from ..factories.LoanFactory import LoanFactory
-from ..factories.PaymentTimeFactory import PaymentTimeFactory
-from ..factories.ClientFactory import ClientFactory
+from ..factories.loan_factory import LoanFactory
+from ..factories.payment_time_factory import PaymentTimeFactory
+from ..factories.client_factory import ClientFactory
 
 
 class LoanTestCase(TestCase):

@@ -1,4 +1,4 @@
 from django.contrib import admin
-from loans.models.Loan import Loan
+from loans.models.loan import Loan
 
 admin.site.register(Loan)

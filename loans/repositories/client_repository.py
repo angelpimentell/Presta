@@ -1,4 +1,4 @@
-from loans.models.Client import Client
+from loans.models.client import Client
 from common.repositories.database_repository import DatabaseRepository
 
 
