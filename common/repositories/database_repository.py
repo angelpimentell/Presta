@@ -11,21 +11,6 @@ class DatabaseRepository(InterfaceRepository):
     def get_by(self, columns: tuple = (), **kwargs):
         return self.model.objects.filter(**kwargs).values(*columns)
 
-    def where_in(self):
-        pass
-
-    def list(self):
-        pass
-
-    def list_by(self):
-        pass
-
-    def list_where_like(self):
-        pass
-
-    def associate(self):
-        pass
-
     def create(self, **kwargs):
         return self.model.objects.create(**kwargs)
 

@@ -12,22 +12,6 @@ class InterfaceRepository(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def where_in(self):
-        pass
-
-    @abstractmethod
-    def list(self):
-        pass
-
-    @abstractmethod
-    def list_where_like(self):
-        pass
-
-    @abstractmethod
-    def associate(self):
-        pass
-
-    @abstractmethod
     def create(self, **kwargs):
         pass
 
