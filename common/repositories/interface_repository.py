@@ -12,6 +12,10 @@ class InterfaceRepository(metaclass=ABCMeta):
         pass
 
     @abstractmethod
+    def list(self, columns: tuple = ()):
+        pass
+
+    @abstractmethod
     def create(self, **kwargs):
         pass
 

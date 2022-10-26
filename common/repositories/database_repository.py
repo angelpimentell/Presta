@@ -11,6 +11,9 @@ class DatabaseRepository(InterfaceRepository):
     def get_by(self, columns: tuple = (), **kwargs):
         return self.model.objects.filter(**kwargs).values(*columns)
 
+    def list(self, columns: tuple = ()):
+        return self.model.objects.all().values(*columns)
+
     def create(self, **kwargs):
         return self.model.objects.create(**kwargs)
 
