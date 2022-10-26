@@ -1,4 +1,4 @@
-from users.models.User import User
+from users.models.user import User
 from common.repositories.database_repository import DatabaseRepository
 
 
