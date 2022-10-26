@@ -3,6 +3,10 @@ version: '3.1'
 services:
   django:
     build: .
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
     command: bash start.sh
     restart: always
     volumes:
