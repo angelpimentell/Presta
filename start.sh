@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Make migrations
-for folder in $(ls -d */)
-do
+for folder in $(ls -d */); do
   module_name="${folder//\//}"
 
   if [ "$module_name" != 'venv' ] && [ "$module_name" != 'common' ] && [ "$module_name" != 'presta' ]
