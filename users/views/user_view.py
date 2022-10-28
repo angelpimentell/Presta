@@ -14,19 +14,27 @@ class UserViewSet(viewsets.ViewSet):
     the `format=None` keyword argument for each action.
     """
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         self.user_database_repository = UserDatabaseRepository()
 
     def list(self, request):
-        pass
+        queryset = self.user_database_repository.list()
+
+        serializer = UserSerializer(queryset, many=True)
+
+        return Response(serializer.data)
 
     def create(self, request):
-        pass
-
-    def retrieve(self, request, pk=None):
-        user = self.user_database_repository.get_by_id(id=pk)
+        user = self.user_database_repository.create(**request.data[0])
 
         serializer = UserSerializer(user)
+
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = self.user_database_repository.get_by_id(id=pk)
+
+        serializer = UserSerializer(queryset, many=True)
 
         return Response(serializer.data)
 
@@ -41,8 +49,8 @@ class UserViewSet(viewsets.ViewSet):
         pass
 
     def destroy(self, request, pk=None):
-        user = self.user_database_repository.delete(id=pk)
+        queryset = self.user_database_repository.delete(id=pk)
 
-        serializer = UserSerializer(user)
+        serializer = UserSerializer(queryset, many=True)
 
         return Response(serializer.data)
