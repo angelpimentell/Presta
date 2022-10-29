@@ -19,8 +19,9 @@ class DatabaseRepository(InterfaceRepository):
 
     def update(self, **kwargs):
         # TODO: Find way to raise ObjectDoesNotExist when filter count is 0
-        self.model.objects.filter(pk=kwargs['id']).update(**kwargs)
-        return kwargs['id']
+        self.model.objects.filter(id=kwargs['id']).update(**kwargs)
+        return self.model.objects.get(id=kwargs['id'])
 
     def delete(self, id: int):
-        return self.model.objects.filter(id=id).delete()
+        self.model.objects.filter(id=id).delete()
+        return id
