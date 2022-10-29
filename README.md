@@ -216,14 +216,14 @@ Project Link: [https://github.com/angelpimentell/Presta](https://github.com/ange
 [linkedin-url]: https://linkedin.com/in/angel-pimentell
 [product-screenshot]: https://github.com/othneildrew/Best-README-Template/raw/master/images/screenshot.png
 
-[Django-url]: https://www.djangoproject.com/
+[Django-url]: https://docs.djangoproject.com/en/4.1/
 [Django.com]: https://img.shields.io/badge/Django-092e20?style=for-the-badge&logo=django
 
 [Docker.com]: https://img.shields.io/badge/Docker-0db7ed?style=for-the-badge&logo=docker&logoColor=white
 [Docker-url]: https://www.docker.com/
 
 [Postgresql.org]: https://img.shields.io/badge/Postgresql-2b6da3?style=for-the-badge&logo=postgresql&logoColor=white
-[Postgresql-url]: https://www.postgresql.org/
+[Postgresql-url]: https://www.postgresql.org/docs/14/release-14-5.html
 
 [Nginx.com]: https://img.shields.io/badge/Nginx-28a745?style=for-the-badge&logo=nginx
 [Nginx-url]: https://www.nginx.com/
