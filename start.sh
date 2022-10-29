@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Make migrations
 for folder in $(ls -d */); do
   module_name="${folder//\//}"
 
