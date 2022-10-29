@@ -1,9 +1,5 @@
 import factory
 
-from faker import Faker
-
-fake = Faker()
-
 
 class UserFactory(factory.django.DjangoModelFactory):
     rol = factory.Faker('random_int', min=0, max=3)
