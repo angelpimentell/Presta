@@ -39,7 +39,7 @@ class UserViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def update(self, request, pk=None):
-        user = self.user_database_repository.update(id=pk)
+        user = self.user_database_repository.update(id=pk, **request.data[0])
 
         serializer = UserSerializer(user)
 
@@ -49,8 +49,6 @@ class UserViewSet(viewsets.ViewSet):
         pass
 
     def destroy(self, request, pk=None):
-        queryset = self.user_database_repository.delete(id=pk)
+        self.user_database_repository.delete(id=pk)
 
-        serializer = UserSerializer(queryset, many=True)
-
-        return Response(serializer.data)
+        return Response(pk)
