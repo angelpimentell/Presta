@@ -1,11 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from users.repositories.user_repository import UserDatabaseRepository
-from users.serializers.user_serializer import UserSerializer
 
-
-class UserViewSet(viewsets.ViewSet):
+class ViewSetExtended(viewsets.ViewSet):
     """
     Example empty viewset demonstrating the standard
     actions that will be handled by a router class.
@@ -14,34 +11,35 @@ class UserViewSet(viewsets.ViewSet):
     the `format=None` keyword argument for each action.
     """
 
-    def __init__(self, **kwargs):
-        self.user_database_repository = UserDatabaseRepository()
+    def __init__(self, repository=None, serializer=None):
+        self.repository = repository()
+        self.serializer = serializer
 
     def list(self, request):
-        queryset = self.user_database_repository.list()
+        queryset = self.repository.list()
 
-        serializer = UserSerializer(queryset, many=True)
+        serializer = self.serializer(queryset, many=True)
 
         return Response(serializer.data)
 
     def create(self, request):
-        user = self.user_database_repository.create(**request.data[0])
+        user = self.repository.create(**request.data[0])
 
-        serializer = UserSerializer(user)
+        serializer = self.serializer(user)
 
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        queryset = self.user_database_repository.get_by_id(id=pk)
+        queryset = self.repository.get_by_id(id=pk)
 
-        serializer = UserSerializer(queryset, many=True)
+        serializer = self.serializer(queryset, many=True)
 
         return Response(serializer.data)
 
     def update(self, request, pk=None):
-        user = self.user_database_repository.update(id=pk, **request.data[0])
+        user = self.repository.update(id=pk, **request.data[0])
 
-        serializer = UserSerializer(user)
+        serializer = self.serializer(user)
 
         return Response(serializer.data)
 
@@ -49,6 +47,6 @@ class UserViewSet(viewsets.ViewSet):
         pass
 
     def destroy(self, request, pk=None):
-        self.user_database_repository.delete(id=pk)
+        self.repository.delete(id=pk)
 
         return Response(pk)
