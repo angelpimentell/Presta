@@ -2,7 +2,7 @@ from common.repositories.interface_repository import InterfaceRepository
 
 
 class DatabaseRepository(InterfaceRepository):
-    def __init__(self, model):
+    def __init__(self, model=None):
         self.model = model
 
     def get_by_id(self, id: int, columns: tuple = ()):
